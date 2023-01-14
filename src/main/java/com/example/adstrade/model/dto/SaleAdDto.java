@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,9 @@ import static java.util.stream.Collectors.toList;
 @Data
 public class SaleAdDto {
 
+    @NotBlank(message = "Message is mandatory")
     private String message;
+
     private String date;
 
     private Long likes;

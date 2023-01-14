@@ -3,6 +3,7 @@ package com.example.adstrade.model.dto;
 import com.example.adstrade.model.PurchaseAd;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +12,9 @@ import static java.util.stream.Collectors.toList;
 @Data
 public class PurchaseAdDto {
 
+    @NotBlank(message = "Message is mandatory")
     private String message;
+
     private String date;
     private boolean completed;
 
