@@ -22,19 +22,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Email is mandatory")
     private String email;
-    @NotBlank(message = "Password is mandatory")
     private String password;
-    @NotBlank(message = "First name is mandatory")
+
     private String firstName;
-    @NotBlank(message = "Last name is mandatory")
     private String lastName;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
     private int verified_ads;
+
     private String description;
 
     @OneToMany(mappedBy = "user", cascade= CascadeType.ALL)

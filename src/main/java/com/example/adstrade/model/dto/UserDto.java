@@ -7,6 +7,8 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +16,17 @@ import static java.util.stream.Collectors.toList;
 
 @Data
 public class UserDto {
+    @NotBlank(message = "Email is mandatory")
+    @Email(message = "Email should be valid")
     private String email;
+
+    @NotBlank(message = "Password is mandatory")
     private String password;
 
+    @NotBlank(message = "First name is mandatory")
     private String firstName;
+
+    @NotBlank(message = "Last name is mandatory")
     private String lastName;
 
     private int verified_ads;
