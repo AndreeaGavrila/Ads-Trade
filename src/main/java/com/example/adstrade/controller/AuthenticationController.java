@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -32,7 +33,7 @@ public class AuthenticationController {
 
     @ApiOperation(value = "Login", notes = "Existing users can login with their credentials.")
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@NotNull @RequestBody UsernameAndPasswordAuthRequest request){
+    public ResponseEntity<LoginResponse> login(@NotNull @Valid @RequestBody UsernameAndPasswordAuthRequest request){
         UserDto userDto = userService.findUserByEmailDto(request.getEmail());
 
         if(userDto == null || !passwordEncoder.matches(request.getPassword(), userDto.getPassword())){
@@ -45,7 +46,7 @@ public class AuthenticationController {
 
     @ApiOperation(value = "Register", notes = "New users can register to the app..")
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterUserRequest request){
+    public ResponseEntity<?> register(@RequestBody @Valid RegisterUserRequest request){
         UserDto user = userService.registerUser(request);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }

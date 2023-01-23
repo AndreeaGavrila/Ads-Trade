@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,7 @@ public class SaleAdController {
 
     @ApiOperation(value = "Add a new Sale Ad", notes = "Users can search anything through sale ads.")
     @PostMapping("/save")
-    public ResponseEntity<SaleAdDto> saveSaleAd(@RequestBody SaleAdDto saleAdDto){
+    public ResponseEntity<SaleAdDto> saveSaleAd(@RequestBody @Valid SaleAdDto saleAdDto){
         return ResponseEntity.of(Optional.of(saleAdService.saveSaleAd(saleAdDto)));
     }
 
